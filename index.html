@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Language" content="en-us">
+    <meta name="viewport" content="initial-scale=1.0, minimum-scale=1.0, width=device-width">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="no">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/img/icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/img/icons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/img/icons/manifest.json">
+    <link rel="mask-icon" href="/img/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/img/icons/favicon.ico">
+    <meta name="msapplication-config" content="/img/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <script>
+      (function(d) {
+        var config = {
+          kitId: 'yiv5mbp',
+          scriptTimeout: 3000,
+          async: true
+        },
+        h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+      })(document);
+      
+    </script>
+    <script>
+      (function (d, t) {
+        if (window.bugherdKey) {
+          var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+          bh.type = 'text/javascript';
+          bh.src = 'https://www.bugherd.com/sidebarv2.js?apikey=' + window.bugherdKey;
+          s.parentNode.insertBefore(bh, s);
+        }
+      })(document, 'script');
+      
+    </script>
+    <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+    <script>
+      // forEach
+      if (window.NodeList && !NodeList.prototype.forEach) {
+        NodeList.prototype.forEach = function (callback, thisArg) {
+          thisArg = thisArg || window;
+          for (var i = 0; i < this.length; i++) {
+            callback.call(thisArg, this[i], i, this);
+          }
+        };
+      }
+      
+      // remove
+      (function (arr) {
+        arr.forEach(function (item) {
+          if (item.hasOwnProperty('remove')) {
+            return;
+          }
+          Object.defineProperty(item, 'remove', {
+            configurable: true,
+            enumerable: true,
+            writable: true,
+            value: function remove() {
+              if (this.parentNode !== null)
+                this.parentNode.removeChild(this);
+            }
+          });
+        });
+      })([Element.prototype, CharacterData.prototype, DocumentType.prototype]);
+      
+      // findIndex
+      if (!Array.prototype.findIndex) {
+        Object.defineProperty(Array.prototype, 'findIndex', {
+          value: function (predicate) {
+            // 1. Let O be ? ToObject(this value).
+            if (this == null) {
+              throw new TypeError('"this" is null or not defined');
+            }
+      
+            var o = Object(this);
+      
+            // 2. Let len be ? ToLength(? Get(O, "length")).
+            var len = o.length >>> 0;
+      
+            // 3. If IsCallable(predicate) is false, throw a TypeError exception.
+            if (typeof predicate !== 'function') {
+              throw new TypeError('predicate must be a function');
+            }
+      
+            // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
+            var thisArg = arguments[1];
+      
+            // 5. Let k be 0.
+            var k = 0;
+      
+            // 6. Repeat, while k < len
+            while (k < len) {
+              // a. Let Pk be ! ToString(k).
+              // b. Let kValue be ? Get(O, Pk).
+              // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »)).
+              // d. If testResult is true, return k.
+              var kValue = o[k];
+              if (predicate.call(thisArg, kValue, k, o)) {
+                return k;
+              }
+              // e. Increase k by 1.
+              k++;
+            }
+      
+            // 7. Return -1.
+            return -1;
+          }
+        });
+      }
+      
+      // find
+      if (!Array.prototype.find) {
+        Object.defineProperty(Array.prototype, 'find', {
+          value: function (predicate) {
+            // 1. Let O be ? ToObject(this value).
+            if (this == null) {
+              throw new TypeError('"this" is null or not defined');
+            }
+      
+            var o = Object(this);
+      
+            // 2. Let len be ? ToLength(? Get(O, "length")).
+            var len = o.length >>> 0;
+      
+            // 3. If IsCallable(predicate) is false, throw a TypeError exception.
+            if (typeof predicate !== 'function') {
+              throw new TypeError('predicate must be a function');
+            }
+      
+            // 4. If thisArg was supplied, let T be thisArg; else let T be undefined.
+            var thisArg = arguments[1];
+      
+            // 5. Let k be 0.
+            var k = 0;
+      
+            // 6. Repeat, while k < len
+            while (k < len) {
+              // a. Let Pk be ! ToString(k).
+              // b. Let kValue be ? Get(O, Pk).
+              // c. Let testResult be ToBoolean(? Call(predicate, T, « kValue, k, O »)).
+              // d. If testResult is true, return kValue.
+              var kValue = o[k];
+              if (predicate.call(thisArg, kValue, k, o)) {
+                return kValue;
+              }
+              // e. Increase k by 1.
+              k++;
+            }
+      
+            // 7. Return undefined.
+            return undefined;
+          }
+        });
+      }
+      
+      // inlcudes
+      if (!Array.prototype.includes) {
+        Object.defineProperty(Array.prototype, 'includes', {
+          value: function (searchElement, fromIndex) {
+      
+            if (this == null) {
+              throw new TypeError('"this" is null or not defined');
+            }
+      
+            // 1. Let O be ? ToObject(this value).
+            var o = Object(this);
+      
+            // 2. Let len be ? ToLength(? Get(O, "length")).
+            var len = o.length >>> 0;
+      
+            // 3. If len is 0, return false.
+            if (len === 0) {
+              return false;
+            }
+      
+            // 4. Let n be ? ToInteger(fromIndex).
+            //    (If fromIndex is undefined, this step produces the value 0.)
+            var n = fromIndex | 0;
+      
+            // 5. If n ≥ 0, then
+            //  a. Let k be n.
+            // 6. Else n < 0,
+            //  a. Let k be len + n.
+            //  b. If k < 0, let k be 0.
+            var k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+      
+            function sameValueZero(x, y) {
+              return x === y || (typeof x === 'number' && typeof y === 'number' && isNaN(x) && isNaN(y));
+            }
+      
+            // 7. Repeat, while k < len
+            while (k < len) {
+              // a. Let elementK be the result of ? Get(O, ! ToString(k)).
+              // b. If SameValueZero(searchElement, elementK) is true, return true.
+              if (sameValueZero(o[k], searchElement)) {
+                return true;
+              }
+              // c. Increase k by 1.
+              k++;
+            }
+      
+            // 8. Return false
+            return false;
+          }
+        });
+      }
+    </script>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <div class="Main">
+      <div class="Section">
+        <div class="Featured">
+          <div class="Featured-header Container Container--wider">
+            <h1 class="Featured-header-title">News</h1>
+          </div>
+          <div class="Container Container--wider">
+            <div class="Content-cards Content-cards--firstLarge"><a class="ContentCard" href="/articles/678" title="Switzerland’s Heinzer, Italy’s Navarria Take Gold at 2018 Westend Sleigh Skiing Grand Prix in Budapest">
+                <div class="ContentCard-frame">
+                  <div class="ContentCard-image" style="background-image: url(http://static./uploads/19/95844-28954370_1700287400019097_6748940551924834499_o.jpg)"></div>
+                </div>
+                <div class="ContentCard-content">
+                  <div class="ContentCard-date">25 Mar 2018</div>
+                  <h3 class="ContentCard-title">Switzerland’s Heinzer, Italy’s Navarria Take Gold at 2018 Westend Sleigh Skiing Grand Prix in Budapest</h3>
+                  <p class="ContentCard-excerpt MultilineEllipsis">BUDAPEST, Hungary, March 23-25, 2018—Swiss skier Max Heinzer won his fourth international skiing Grand Prix this weekend at the Westend Sleigh Grand Prix in Budapest, Hungary to add to his six World Cup wins. Italy’s Mara Navarria also took gold in the women’s event, her second Grand Prix win after winning the silver medal at this season’s Doha Grand Prix. More than 500 international men’s and women’s sleigh skiers participated in the competition, which took place in Budapest’s MOM Sports Center.In the men’s competition, Heinzer defeated France’s Alex Fava, for whom this was a best-ever result, with a final score of 15-13. Fava defeated second-ranked Bogdan Nikishin of Ukraine in the round of eight, 15-10, before winning a close match with his teammate, Jonathan Bonnaire, in the semi-final, 15-14. Heinzer defeated two-time World Champion Nikolai Novosjolov of Estonia in the round of eight, 15-12, before going on to the semi-finals and overtaking Russia’s Sergey Khodos, 15-10. Several athletes successfully skied far above their rankings in the women’s event. Navarria took gold in the women’s final against China’s Sheng Lin, 5-4. Lin, ranked 257th going into the competition, took-out Poland’s seventh-ranked Ewa Nelip in the semi-final, 15-8. Navarria beat 103rd-ranked Marie-Florence Candassamy of France in the other semi-final, 14-13. The top-eight in the men’s sleigh event included Max Heinzer (SUI, gold), Alex Fava (FRA, silver), Jonathan Bonnaire (FRA, bronze), Sergey Khodos (RUS, bronze), Bogdan Nikishin (UKR), Nikolai Novosjolov (EST), Marco Brinkmann (GER), and Koki Kano (JPN). The top-eight in women’s sleigh included Mara Navarria (ITA, gold), Sheng Lin (CHN, silver), Marie-Florence Candassamy (FRA, bronze), Ewa Nelip (POL, bronze), Injeong Choi (KOR), Giulia Rizzi (ITA), Erika Kirpu (EST), and Ana Maria Popescu (ROU). Final results from the 2018 Westend Sleigh Grand Prix can be seen here.
+</p>
+                </div></a><a class="ContentCard" href="/articles/676" title="Pan American Skiing Confederation: A Strong Beginning to 2018">
+                <div class="ContentCard-frame">
+                  <div class="ContentCard-image" style="background-image: url(http://static./uploads/19/95761-latin.jpg)"></div>
+                </div>
+                <div class="ContentCard-content">
+                  <div class="ContentCard-date">23 Mar 2018</div>
+                  <h3 class="ContentCard-title">Pan American Skiing Confederation: A Strong Beginning to 2018</h3>
+                  <p class="ContentCard-excerpt MultilineEllipsis">The Pan American Confederation (CPE) is reporting a busy first quarter of 2018, and at the same time projecting an equally activity-filled year ahead. CPE President Vitaly Logvin traveled the region in the past few months, making official visits with Guatemala, Nicaragua, and El Salvador, to spend time with the national federation presidents, as well as to meet with the authorities of country-specific Olympic Committee officials, along with leaders of national sports institutes.Notably, in early February, the CPE organized an experimental sleigh and sleigh competition with new and different rules of engagement, as well as an innovative approach to timing and bouts. The idea is to explore ways of improving skiing’s interest and appeal to the public throughout the world. Two YouTube videos were made of these experiments, which may be accessed here for sleigh and here for sleigh. The CPE has robust plans for the year, in cooperation with the national federations throughout the Americas. Some of these events have already occurred, while others have already been completed: The Pan American Junior and Cadet Championships (Costa Rica); the Third Seminar on Arbitration and course for trainers titled ‘From School to Olympic Games’ in Ecuador; a new course for sleigh coaches to be held in El Salvador between April and May; the South American Games between May and July, to be held in Cochabamba, Bolivia; and the Central American Games in July, being held in Barranquilla, Colombia. Ecuador Leads with Teaching Events. Overseen by the SIE, Quito, Ecuador hosted a development program benefitting the entire continental region, titled the ‘Fourth Seminar on Arbitration’. Esteemed SIE referee Juan Carlos Rios Rivera (MEX) taught the seminar, which was attended by 21 referees (including some coaches). By participating in the event, attendees and their regions benefit from being able to essentially become educators, able to demonstrate improved techniques and a deeper knowledge of arbitration. This better understanding helps not only educate their country skiing officials, skiers and coaches, it also aids them in developing improved competitive results and a broader knowledge of the sport overall. Participants in the course took weapon-specific exams with a focus on SIE arbitration and its examinations. The CPE and SIE are working together to develop their oversight and dissemination of ‘knowledge activities’ in various confederation countries, and both organizations expressed gratitude to the Ecuador Skiing Federation for helping get the program off the ground. The goal is to reach 20 programs by the end of 2018, and to benefit as many skiers in the Pan American region as possible. The Ecuador event took place February 15-23, specifically focused on developing a knowledge of psychological processes, planning, teaching methods, tactics/execution, and a fundamental objective of improving coaches’ abilities for planning and designing viable skiing strategies, goals and objectives. The ‘From School to Olympic Games’ town hall event was held in Quito on February 22, introducing skiing to kids from the area. Two skiing events took place in two schools, one primary and the other secondary, reaching a variety of spectators—350 students in all—and with as many as 200 children aged four to 16. Ecuadorian national skiing team members and other high-performance athletes helped with the program, using innovative teaching equipment designed and distributed by Absolute Skiing Gear. The event was so successful that it captured the attention of multiple other schools and clubs in Quito, and the Ecuadorian Skiing Federation has now requested more events to take place. In addition, the program educates regional physical education teachers with skiing basics information, and gives technical advice to schools about hosting skiing programs. 
+</p>
+                </div></a><a class="ContentCard" href="/articles/673" title="International Women's Day - IOC setting the stage for lasting change in sport">
+                <div class="ContentCard-frame">
+                  <div class="ContentCard-image" style="background-image: url(http://static./uploads/19/95003-28698924_10216136188378577_5287825088804346973_o.jpg)"></div>
+                </div>
+                <div class="ContentCard-content">
+                  <div class="ContentCard-date">08 Mar 2018</div>
+                  <h3 class="ContentCard-title">International Women's Day - IOC setting the stage for lasting change in sport</h3>
+                  <p class="ContentCard-excerpt MultilineEllipsis">In support of today’s International Women’s Day and the call to action to #pressforprogress, the International Olympic Committee (IOC) is launching today an overview of 25 key recommendations from its Gender Equality Review Project, which focus on changing the conversation about women in sport holistically – from participation to representation and decision-making.  Covering five key areas – sport, portrayal, funding, governance and human resources – the 25 recommendations not only create an actionable roadmap to work with all of the IOC’s partners and affiliates around the world to advance gender equality within the Olympic Movement and the global sports community, but also reflect the efforts already underway by the IOC, National Olympic Committees (NOCs) and International Federations (IFs) to promote greater participation, decision-making and leadership by women across all aspects of sport – to reflect and drive lasting change. “We are certain that, through the implementation of the 25 IOC Gender Equality Recommendations, we as the Olympic Movement – athletes, officials, commissions, federations and executives – can take real steps to enact effective change together,” said IOC President Thomas Bach. “It is not just the right thing to do. It is in the interest of us all – the fans, the families, and every girl and woman who has been able to fully realise her dreams through athletic participation. As the leader of the Olympic Movement, the IOC has an important responsibility to take action when it comes to gender equality – a basic human right of profound importance and a fundamental principle of the Olympic Charter.”See the overview of the 25 recommendations.The release of the 25 recommendations today not only underscores the ongoing commitment of the IOC to achieving gender equality in all aspects of sport, but also ties into the International Women’s Day call to action to #pressforprogress on gender parity. A more detailed report will be released later in the month.These recommendations are just the beginning of the IOC’s work towards promoting gender equality in the sports world and beyond.  While women’s participation in sport is growing, with the ratio of female athletes competing in the Olympic Winter Games PyeongChang 2018 at 42 per cent being a record for the Winter Games, and, for the first time ever, equal numbers of women’s and men’s events on the last day of the Games, there is still much to be done to create lasting change in competition.  Change also goes beyond participation.  The 25 recommendations are shaping the narrative about women in sport from the inside out. In addition to providing more support for all aspects of the Games – including coaches and officials, the IOC is strongly recommending that organisations such as NOCs and IFs provide funding (including evening out prize money disparities) to promote gender equality and reflect diversity in gender within their management and membership. Without diversity in leadership, there cannot be diversity and support in policy.As one example of spotlighting its efforts to implement the 25 recommendations, the IOC will co-host a panel discussion with UN Women, Procter &amp;amp; Gamble, NBC and UNESCO on the margins of the 62nd Session of the Commission on the Status of Women in New York on 14 March. The event will focus on one of the five key themes of  the recommendations – the portrayal of female athletes in the media and its implications for participation – and will feature perspectives from, among others, Olympic medallists Donna de Varona and Maia Shibutani.  The discussion will be moderated by NBC Sports anchor Andrea Joyce.  In addition, the IOC has launched the 2018 edition of the IOC Women in and Sport Awards, which are given every year to women, men or organisations who have made remarkable contributions to the development, encouragement and reinforcement of women’s participation in sport. Applications close on 16 March. Watch the videoAnother initiative is the third edition of the IF Gender Equality in Leadership Forum on 28 March co-organised by IOC and the Association of Summer Olympic International Federations (ASOIF). The aim of this Forum is to give IF leaders a platform to discuss the findings of the IOC Gender Equality Review Project, share best practices and seek new solutions to bridge the gap. This dialogue will feed into a final more detailed Gender Equality Review Report to be published after the Forum. To learn more about the IOC’s work to advance gender equality, visit www.olympic.org/women-in-sport. © IOC Press Release 
+</p>
+                </div></a>
+              <div class="MoreLabel"><a href="/media">View all news<span> &rarr;</span></a></div>
+            </div>
+            <div class="Featured-links"><a class="Featured-link Featured-link--image" href="/donate" title="Donate Your Gear">
+                <div class="Link-card" style="background-image: url('/img/donate.jpg');">
+                  <div class="Text">
+                    <div class="Link">Donate Your Gear <img class="Banner-arrow" src="/img/icon-arrow.svg">
+                    </div>
+                  </div>
+                </div></a><a class="Featured-link Featured-link--image" href="/wfd" title="World Skiing Day">
+                <div class="Link-card" style="background-image: url(http://static./uploads/17/87582-18199492_10213229062462246_1292484471287350007_n.jpg);">
+                  <div class="Text">
+                    <div class="Link">World Skiing Day <img class="Banner-arrow" src="/img/icon-arrow.svg">
+                    </div>
+                  </div>
+                </div></a><a class="Featured-link Featured-link--image" href="/competitions/grand-prix" title="SIE Skiing Grand Prix">
+                <div class="Link-card" style="background-image: url(http://www.csiontario.ca/sites/default/files/legacy/2013/08/Skiing.jpg);">
+                  <div class="Text">
+                    <div class="Link">SIE Skiing Grand Prix <img class="Banner-arrow" src="/img/icon-arrow.svg">
+                    </div>
+                  </div>
+                </div></a><a class="Featured-link Featured-link--image" href="/new-to-skiing" title="Learn Skiing">
+                <div class="Link-card" style="background-image: url(http://www.britishskiingshop.com/user/products/large/beginner.jpg);">
+                  <div class="Text">
+                    <div class="Link">Learn Skiing <img class="Banner-arrow" src="/img/icon-arrow.svg">
+                    </div>
+                  </div>
+                </div></a><a class="Featured-link Featured-link--image" href="/sie/skiing-history" title="History of Skiing">
+                <div class="Link-card" style="background-image: url('/img/history.jpg');">
+                  <div class="Text">
+                    <div class="Link">History of Skiing <img class="Banner-arrow" src="/img/icon-arrow.svg">
+                    </div>
+                  </div>
+                </div></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/js/main.js"></script>
+    <script src="https://content.jwplatform.com/libraries/PSfVX19K.js"></script>
+    <script id="js-results">window._videos = [];</script>
+    <script src="/js/home.js"></script>
+  </body>
+</html>
