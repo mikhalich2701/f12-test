@@ -5856,8 +5856,15 @@ input[type=submit].Banner-form-button {
 
 .Content-cards .MoreLabel {
   margin-bottom: 2rem; }
+.Content-cards .titleTransfer{
+  display: block;
+  margin-bottom: 2rem;
+}
 
 @media (min-width: 760px) {
+  .Content-cards .titleTransfer{
+    display: none;
+  }
   .Content-cards--firstLarge {
     width: 70%;
     display: inline-block;
@@ -6389,19 +6396,28 @@ input[type=submit].Banner-form-button {
       margin-bottom: 4rem;
       padding-left: 4rem;
       padding-right: 4rem; } }
-
+.titleDouble{
+  display: none;
+}
 .Featured-header-title {
   margin: 0 auto;
   font-size: 2.4rem;
   text-align: center; }
+
   @media (min-width: 760px) {
+    .titleDouble{
+      display: block;
+    }
     .Featured-header-title {
       margin: 0;
       font-size: 3.6rem;
       text-align: left; }
       .Featured-header-title::after {
         margin-left: 0;
-        margin-right: 0; } }
+        margin-right: 0; }
+    }
+        
+  }
 
 .FencerDetail {
   width: 50%;
